@@ -59,7 +59,7 @@ Create the following routes as efficiently as possible, using validation where a
 2. **Add new doctor**: Create a route to add a new doctor.
 ![](createNewEmployee.png)
 3. **Change doctor status**: Create a route to change a doctor's status.
-
+![](updateEmployeeStatus.png)
 4. **Update doctor's department**: Create a route to update a doctor's department.
 ![](updateEmployeeDepartment.png)
 5. **Update patient information**: Create a route to update patient information (the user should be able to update any patient information through this route).

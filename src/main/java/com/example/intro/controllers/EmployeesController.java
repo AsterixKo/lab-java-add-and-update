@@ -2,6 +2,7 @@ package com.example.intro.controllers;
 
 import com.example.intro.dtos.EmployeeCreationDTO;
 import com.example.intro.dtos.EmployeeUpdateDepartmentDTO;
+import com.example.intro.dtos.EmployeeUpdateStatusDTO;
 import com.example.intro.dtos.PatientCreationDTO;
 import com.example.intro.models.Department;
 import com.example.intro.models.Employee;
@@ -70,6 +71,13 @@ public class EmployeesController {
     @ResponseStatus(HttpStatus.CREATED)
     public Employee createNewPatient(@RequestBody EmployeeCreationDTO employeeCreationDTO) {
         return employeeService.createEmployee(employeeCreationDTO);
+    }
+
+    @PatchMapping("/changeStatus/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Employee updateEmployeeStatus(@PathVariable Long id,
+                                         @RequestBody EmployeeUpdateStatusDTO employeeUpdateStatusDTO) {
+        return employeeService.updateEmployeeStatus(id, employeeUpdateStatusDTO);
     }
 
     @PatchMapping("/{id}")

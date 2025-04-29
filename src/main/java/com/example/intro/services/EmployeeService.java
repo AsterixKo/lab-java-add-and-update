@@ -2,6 +2,7 @@ package com.example.intro.services;
 
 import com.example.intro.dtos.EmployeeCreationDTO;
 import com.example.intro.dtos.EmployeeUpdateDepartmentDTO;
+import com.example.intro.dtos.EmployeeUpdateStatusDTO;
 import com.example.intro.dtos.PatientCreationDTO;
 import com.example.intro.models.Department;
 import com.example.intro.models.Employee;
@@ -38,6 +39,33 @@ public class EmployeeService {
             );
             System.out.println("saving employee");
             employeesRepository.save(employee);
+        }
+
+        return employee;
+    }
+
+    public Employee updateEmployeeStatus(Long id, EmployeeUpdateStatusDTO employeeUpdateStatusDTO) {
+        Employee employee = null;
+        if (id == null) {
+            System.out.println("employee not found by id null");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } else {
+            Optional<Employee> employeeOptional = employeesRepository.findById(id);
+            if (employeeOptional.isPresent()) {
+                if (employeeUpdateStatusDTO.getStatus() == null ||
+                        employeeUpdateStatusDTO.getStatus().isEmpty()) {
+                    System.out.println("employee status null or empty");
+                    throw new ResponseStatusException(HttpStatus.NO_CONTENT);
+                }
+                Employee employeeToUpdate = employeeOptional.get();
+                employeeToUpdate.setStatus(
+                        Status.valueOf(employeeUpdateStatusDTO.getStatus().toUpperCase()));
+                System.out.println("employee saved: " + employeeToUpdate);
+                employee = employeesRepository.save(employeeToUpdate);
+            } else {
+                System.out.println("employee not found by id");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
         }
 
         return employee;
