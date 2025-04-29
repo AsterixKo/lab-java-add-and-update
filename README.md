@@ -55,6 +55,7 @@ _Note that `admitted_by` is a foreign key to the employee table._
 Create the following routes as efficiently as possible, using validation where appropriate:
 
 1. **Add new patient**: Create a route to add a new patient.
+![](createNewPatient.png)
 2. **Add new doctor**: Create a route to add a new doctor.
 3. **Change doctor status**: Create a route to change a doctor's status.
 4. **Update doctor's department**: Create a route to update a doctor's department.
