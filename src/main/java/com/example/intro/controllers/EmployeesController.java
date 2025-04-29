@@ -1,6 +1,7 @@
 package com.example.intro.controllers;
 
 import com.example.intro.dtos.EmployeeCreationDTO;
+import com.example.intro.dtos.EmployeeUpdateDepartmentDTO;
 import com.example.intro.dtos.PatientCreationDTO;
 import com.example.intro.models.Department;
 import com.example.intro.models.Employee;
@@ -67,8 +68,15 @@ public class EmployeesController {
     // utilizara la ruta "/api/employees"
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee createNewPatient(@RequestBody EmployeeCreationDTO employeeCreationDTO){
+    public Employee createNewPatient(@RequestBody EmployeeCreationDTO employeeCreationDTO) {
         return employeeService.createEmployee(employeeCreationDTO);
+    }
+
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Employee updateEmployeeDepartment(@PathVariable Long id,
+                                             @RequestBody EmployeeUpdateDepartmentDTO employeeUpdateDepartmentDTO) {
+        return employeeService.updateEmployeeDepartment(id, employeeUpdateDepartmentDTO);
     }
 
 }
