@@ -1,6 +1,7 @@
 package com.example.intro.controllers;
 
 import com.example.intro.dtos.PatientCreationDTO;
+import com.example.intro.dtos.PatientUpdateAllDTO;
 import com.example.intro.models.Department;
 import com.example.intro.models.Employee;
 import com.example.intro.models.Patient;
@@ -104,5 +105,11 @@ public class PatientsController {
     @ResponseStatus(HttpStatus.CREATED)
     public Patient createNewPatient(@RequestBody PatientCreationDTO patientCreationDTO){
         return patientService.createPatient(patientCreationDTO);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Patient updatePatient(@PathVariable Long id, @RequestBody PatientUpdateAllDTO patientUpdateAllDTO) {
+        return patientService.updatePatient(id, patientUpdateAllDTO);
     }
 }
